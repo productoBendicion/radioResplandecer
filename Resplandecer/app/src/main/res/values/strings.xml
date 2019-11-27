@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Resplandecer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Inicio</string>
+    <string name="declaracion_al_dia">Declaración al Día</string>
+    <string name="valverde_sr">Valverde Sr Himnos</string>
+    <string name="vdee">VDEE</string>
+    <string name="vdee_biblingue">VDEE Bilingüe</string>
+    <string name="articulos">Articulos</string>
+    <string name="testimonios">Testimonios</string>
+    <string name="vqceed">VQCEED</string>
+    <string name="lecciones_doctrinales">Doctrinales</string>
+
+    <string name="compartir">Compartir</string>
+    <string name="mas_infomacion">Mas Informacion</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/menu_home_icon"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/declaracion_al_dia"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/declaracion_al_dia" />
+
+        <item
+            android:id="@+id/valverde_sr"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/valverde_sr" />
+
+        <item
+            android:id="@+id/vqceed"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/vqceed" />
+
+        <item
+            android:id="@+id/vdee_bilingue"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/vdee_biblingue" />
+
+        <item
+            android:id="@+id/vdee"
+            android:icon="@drawable/website_icon"
+            android:title="@string/vdee" />
+
+        <item
+            android:id="@+id/predicas_rios"
+            android:icon="@drawable/ic_menu_share"
+            android:title="@string/compartir" />
+    </group>
+</menu>
