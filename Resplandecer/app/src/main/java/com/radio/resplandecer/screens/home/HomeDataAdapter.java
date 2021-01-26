@@ -1,6 +1,7 @@
 package com.radio.resplandecer.screens.home;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ public class HomeDataAdapter extends RecyclerView.Adapter<HomeDataAdapter.AudioV
 
     private ArrayList<HomeData> homeDataList;
     private Context context;
+    private Listener listener;
 
-    public HomeDataAdapter(Context context, ArrayList<HomeData> homeDataList) {
+    public HomeDataAdapter(Context context, Listener listener,  ArrayList<HomeData> homeDataList) {
         this.homeDataList = homeDataList;
         this.context = context;
+        this.listener = listener;
     }
 
     @NonNull
@@ -35,9 +38,28 @@ public class HomeDataAdapter extends RecyclerView.Adapter<HomeDataAdapter.AudioV
 
     @Override
     public void onBindViewHolder(@NonNull AudioViewHolder homeDataHolder, int position) {
-        HomeData homeData = homeDataList.get(position);
-        homeDataHolder.title.setText(homeData.getTitle());
-        homeDataHolder.contentData.setText(homeData.getContext());
+        final HomeData homeData = homeDataList.get(position);
+        String title = homeData.getTitle();
+
+        if (title.equals("ESTACION PRINCIPAL")) {
+            homeDataHolder.title.setText("Radio Resplandecer");
+            homeDataHolder.contentData.setText("Precione Para Escuchar");
+            homeDataHolder.itemView.setBackgroundColor(Color.RED);
+            homeDataHolder.title.setTextColor(Color.WHITE);
+            homeDataHolder.contentData.setTextColor(Color.WHITE);
+        } else {
+            homeDataHolder.title.setText(homeData.getTitle());
+            homeDataHolder.contentData.setText(homeData.getContext());
+        }
+
+        homeDataHolder.itemView.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.onViewClicked(homeData.getContext());
+                    }
+                }
+        );
 
     }
 
@@ -60,9 +82,15 @@ public class HomeDataAdapter extends RecyclerView.Adapter<HomeDataAdapter.AudioV
         public AudioViewHolder(@NonNull View itemView) {
             super(itemView);
 
+
             title = itemView.findViewById(R.id.title);
             contentData = itemView.findViewById(R.id.content_data);
 
         }
+    }
+
+    interface Listener {
+
+        void onViewClicked(String url);
     }
 }
