@@ -32,10 +32,5 @@
             android:id="@+id/vdee"
             android:icon="@drawable/website_icon"
             android:title="@string/vdee" />
-
-        <item
-            android:id="@+id/predicas_rios"
-            android:icon="@drawable/ic_menu_share"
-            android:title="@string/compartir" />
     </group>
 </menu>

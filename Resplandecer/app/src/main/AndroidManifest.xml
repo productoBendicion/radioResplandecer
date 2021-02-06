@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.radio.resplandecer">
+    package="com.resplandecer">
 
     <application
         android:allowBackup="true"
@@ -10,23 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".screens.SplashScreen">
+        <activity android:name="com.resplandecer.screens.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.VozQueClamaEnElDesierto.VozQueClamaEnElDesierto" />
-        <activity android:name=".screens.VdeeBilingue.VdeeBilingue" />
-        <activity android:name=".screens.vdee.VDEE" />
-        <activity android:name=".screens.declaracionAlDia.DeclaracionAlDia" />
-        <activity android:name=".screens.maranatha.MaranathaSongsActivity" />
-        <activity android:name=".baseActivities.BaseDrawerActivity" />
-        <activity android:name=".screens.home.HomeActivity"/>
+        <activity android:name="com.resplandecer.screens.VozQueClamaEnElDesierto.VozQueClamaEnElDesierto" />
+        <activity android:name="com.resplandecer.screens.VdeeBilingue.VdeeBilingue" />
+        <activity android:name="com.resplandecer.screens.vdee.VDEE" />
+        <activity android:name="com.resplandecer.screens.declaracionAlDia.DeclaracionAlDia" />
+        <activity android:name="com.resplandecer.screens.maranatha.MaranathaSongsActivity" />
+        <activity android:name="com.resplandecer.baseActivities.BaseDrawerActivity" />
+        <activity android:name="com.resplandecer.screens.home.HomeActivity"/>
 
         <service
-            android:name=".utils.ForegroundService"
+            android:name="com.resplandecer.utils.ForegroundService"
             android:enabled="true"
             android:exported="true" />
     </application>

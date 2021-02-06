@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "749748468319",
+    "firebase_url": "https://resplandecer-5b625.firebaseio.com",
+    "project_id": "resplandecer-5b625",
+    "storage_bucket": "resplandecer-5b625.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749748468319:android:9e40ed946fd562939df9ea",
+        "android_client_info": {
+          "package_name": "com.resplandecer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749748468319-c74mdnbhe9mopu6ef6qfa9iejksoiqk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDygSlbYToxLmu0NcA50qeAjlI6XcqWphw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749748468319-c74mdnbhe9mopu6ef6qfa9iejksoiqk4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "749748468319-1fbobjbrnb5rd05d7vdto336mrlthlr5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.resplandecer.Resplandecer"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

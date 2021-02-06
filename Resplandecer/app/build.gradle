@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.radio.resplandecer"
+        applicationId "com.resplandecer"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -41,5 +42,9 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'
 
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:26.4.0')
+    implementation 'com.google.firebase:firebase-analytics'
 
 }
