@@ -52,7 +52,7 @@ public class DeclaracionAlDiaAdapter extends RecyclerView.Adapter<DeclaracionAlD
                             public void onClick(View v) {
                                 selectedSong = finalI;
                                 listener.onSongTapped(finalI);
-                                Log.d("Declaraciones", "clicked: " + finalI);
+//                                Log.d("Declaraciones", "clicked: " + finalI);
 
                             }
                         }
@@ -92,7 +92,7 @@ public class DeclaracionAlDiaAdapter extends RecyclerView.Adapter<DeclaracionAlD
 
     public void updateDeclaraciones(ArrayList<Audio> audioList) {
         Log.d("Declaraciones", "update");
-        Log.d("Declaraciones", "updateSize: " + audioList.size());
+//        Log.d("Declaraciones", "updateSize: " + audioList.size());
 
 
         this.audioList.clear();

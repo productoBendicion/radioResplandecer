@@ -171,8 +171,8 @@ public class DeclaracionAlDia extends BaseDrawerActivity implements RadioPlayerL
                             }
 
 
-                            Log.d("Declaraciones", "linK: " + link);
-                            Log.d("Declaraciones", "title: " + title);
+//                            Log.d("Declaraciones", "linK: " + link);
+//                            Log.d("Declaraciones", "title: " + title);
 
                             if (link.contains("mp3")) {
                                 Audio declaracion = new Audio(title, link, author);

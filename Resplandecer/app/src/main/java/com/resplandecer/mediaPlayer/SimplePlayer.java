@@ -8,31 +8,18 @@ import android.app.Activity;
 import android.net.Uri;
 import android.util.Log;
 
-import com.google.android.exoplayer2.DefaultLoadControl;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.ExoPlaybackException;
-import com.google.android.exoplayer2.ExoPlayer;
-import com.google.android.exoplayer2.ExoPlayerFactory;
-import com.google.android.exoplayer2.PlaybackParameters;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.source.TrackGroupArray;
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
+import androidx.media3.common.MediaItem;
+import androidx.media3.exoplayer.ExoPlayer;
+
 
 /**
  * Player class to control the flow of the ExoPlayer library.
  */
 public class SimplePlayer
-        implements RadioPlayer,
-        ExoPlayer.EventListener {
+        implements RadioPlayer {
 
     private static Activity mActivity;
-    private static SimpleExoPlayer mSimpleExoPlayer;
+    private static ExoPlayer mSimpleExoPlayer;
     private static SimplePlayer mSimplePlayerInstance;
     private static RadioPlayerListener mRadioPlayerListener;
     private static RadioStationUrls mRadioStationUrls;
@@ -67,26 +54,26 @@ public class SimplePlayer
 
             playedOnce = false;
             mIsInitialized = false;
-            mSimpleExoPlayer = ExoPlayerFactory.newSimpleInstance(
-                    new DefaultRenderersFactory(mActivity),
-                    new DefaultTrackSelector(), new DefaultLoadControl());
+            mSimpleExoPlayer = new ExoPlayer.Builder(mActivity).build();
 
 
             mSimpleExoPlayer.setPlayWhenReady(true);
         }
         mRadioStationUrls = RadioStationUrls.initRadioStationUrl();
-        mSimpleExoPlayer.addListener(this);
+//        mSimpleExoPlayer.addListener(this);
 
         Uri uri = Uri.parse(mRadioStationUrls.getCurrentSong().getAudioUrl());
-        MediaSource mediasource = buildMediaSource(uri);
-        mSimpleExoPlayer.prepare(mediasource, true, false);
+        MediaItem mediasource = buildMediaSource(uri);
+        mSimpleExoPlayer.addMediaItem(mediasource);
+        mSimpleExoPlayer.prepare();
+        mSimpleExoPlayer.play();
     }
 
     @Override
     public void releasePlayer() {
         if (mSimpleExoPlayer != null) {
             mIsInitialized = false;
-            mSimpleExoPlayer.removeListener(this);
+//            mSimpleExoPlayer.removeListener(this);
             mSimpleExoPlayer.release();
             mSimpleExoPlayer = null;
 
@@ -94,70 +81,49 @@ public class SimplePlayer
         }
     }
 
-    private MediaSource buildMediaSource(Uri uri) {
-        return new ExtractorMediaSource(uri,
-                new DefaultHttpDataSourceFactory("ua"),
-                new DefaultExtractorsFactory(), null, null);
+    private MediaItem buildMediaSource(Uri uri) {
+        return MediaItem.fromUri(uri);
     }
 
-    @Override
-    public void onTimelineChanged(Timeline timeline, Object manifest) { }
+//    @Override
+//    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+//        String stateString;
+//
+//        switch (playbackState) {
+//            case ExoPlayer.STATE_IDLE:
+//                stateString = "ExoPlayer.STATE_IDLE      -";
+//                initPlayer();
+//                break;
+//            case ExoPlayer.STATE_BUFFERING:
+//                stateString = "ExoPlayer.STATE_BUFFERING -";
+//                mRadioPlayerListener.onRadioPlayerBuffering();
+//                break;
+//            case ExoPlayer.STATE_READY:
+//                stateString = "ExoPlayer.STATE_READY     -";
+//                playedOnce = true;
+//                mIsInitialized = true;
+//                mRadioPlayerListener.onRadioPlayerReady();
+//                break;
+//            case ExoPlayer.STATE_ENDED:
+//                stateString = "ExoPlayer.STATE_ENDED     -";
+//                mRadioStationUrls.nextSong();
+//                if (mRadioStationUrls.getCurrentSongTracker() != -1) {
+//                    initPlayer();
+//                }
+//                mRadioPlayerListener.onRadioStateEnded();
+//                break;
+//            default:
+//                stateString = "UNKNOWN_STATE             -";
+//                break;
+//        }
+//
+//        Log.d("PlayerStateChanged", "changed state to " + stateString
+//                + " playWhenReady: " + playWhenReady);
+//
+//    }
 
-    @Override
-    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) { }
 
-    @Override
-    public void onLoadingChanged(boolean isLoading) { }
-
-    @Override
-    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
-        String stateString;
-
-        switch (playbackState) {
-            case ExoPlayer.STATE_IDLE:
-                stateString = "ExoPlayer.STATE_IDLE      -";
-                initPlayer();
-                break;
-            case ExoPlayer.STATE_BUFFERING:
-                stateString = "ExoPlayer.STATE_BUFFERING -";
-                mRadioPlayerListener.onRadioPlayerBuffering();
-                break;
-            case ExoPlayer.STATE_READY:
-                stateString = "ExoPlayer.STATE_READY     -";
-                playedOnce = true;
-                mIsInitialized = true;
-                mRadioPlayerListener.onRadioPlayerReady();
-                break;
-            case ExoPlayer.STATE_ENDED:
-                stateString = "ExoPlayer.STATE_ENDED     -";
-                mRadioStationUrls.nextSong();
-                if (mRadioStationUrls.getCurrentSongTracker() != -1) {
-                    initPlayer();
-                }
-                mRadioPlayerListener.onRadioStateEnded();
-                break;
-            default:
-                stateString = "UNKNOWN_STATE             -";
-                break;
-        }
-
-        Log.d("PlayerStateChanged", "changed state to " + stateString
-                + " playWhenReady: " + playWhenReady);
-
-    }
-
-    @Override
-    public void onPlayerError(ExoPlaybackException error) {
-        if (!playedOnce) {
-            releasePlayer();
-            mRadioPlayerListener.onRadioPlayerError();
-            mIsInitialized = false;
-        }
-    }
-
-    @Override
-    public void onPositionDiscontinuity() { }
-
-    @Override
-    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) { }
+//
+//    @Override
+//    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) { }
 }

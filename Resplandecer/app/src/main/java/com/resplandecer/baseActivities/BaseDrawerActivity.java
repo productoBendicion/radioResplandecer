@@ -101,35 +101,27 @@ public abstract class BaseDrawerActivity
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         Intent intent = null;
         int menuId = menuItem != null ? menuItem.getItemId() : -1;
-
-        switch (menuId) {
-            case R.id.home:
-                intent = new Intent(this, HomeActivity.class);
-                break;
-            case R.id.declaracion_al_dia:
-                intent = new Intent(this, DeclaracionAlDia.class);
-                break;
-            case R.id.valverde_sr:
-                intent = new Intent(this, MaranathaSongsActivity.class);
-                break;
-            case R.id.vdee:
-                intent = new Intent(this, VDEE.class);
-                break;
-            case R.id.vdee_bilingue:
-                intent = new Intent(this, VdeeBilingue.class);
-                break;
-            case R.id.vqceed:
-                intent = new Intent(this, VozQueClamaEnElDesierto.class);
-                break;
+        if (menuId == R.id.home) {
+            intent = new Intent(this, HomeActivity.class);
+        } else if (menuId == R.id.declaracion_al_dia) {
+            intent = new Intent(this, DeclaracionAlDia.class);
+        } else if (menuId == R.id.valverde_sr) {
+            intent = new Intent(this, MaranathaSongsActivity.class);
+        } else if (menuId == R.id.vdee) {
+            intent = new Intent(this, VDEE.class);
+        } else if (menuId == R.id.vdee_bilingue) {
+            intent = new Intent(this, VdeeBilingue.class);
+        } else if (menuId == R.id.vqceed) {
+            intent = new Intent(this, VozQueClamaEnElDesierto.class);
+        } else {
+            intent = new Intent(this, HomeActivity.class);
         }
 
-        if (intent != null) {
-            startActivity(intent);
-            finish();
+        startActivity(intent);
+        finish();
 
-            return true;
-        }
-        return false;
+        return true;
+
     }
 
 

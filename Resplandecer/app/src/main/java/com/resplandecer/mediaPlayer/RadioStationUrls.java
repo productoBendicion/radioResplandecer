@@ -77,7 +77,7 @@ public class RadioStationUrls {
             }
         }
 
-        Log.d("CurrentSong: " , "Curr: " +  currentSong);
+//        Log.d("CurrentSong: " , "Curr: " +  currentSong);
     }
 
     private int getRandomSong() {
